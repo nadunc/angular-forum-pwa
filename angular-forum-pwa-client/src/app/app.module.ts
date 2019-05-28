@@ -5,10 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PostListComponent } from './post-list/post-list.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { FooterComponent } from './footer/footer.component';
+import { PostListItemComponent } from './post-list-item/post-list-item.component';
+import { PostComponent } from './post/post.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostListComponent,
+    MainLayoutComponent,
+    TopMenuComponent,
+    SidebarComponent,
+    FooterComponent,
+    PostListItemComponent,
+    PostComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
