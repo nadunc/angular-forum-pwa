@@ -13,6 +13,13 @@ import { FooterComponent } from './footer/footer.component';
 import { PostListItemComponent } from './post-list-item/post-list-item.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PostPageComponent } from './post-page/post-page.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -24,14 +31,20 @@ import { CommentComponent } from './comment/comment.component';
     FooterComponent,
     PostListItemComponent,
     PostComponent,
-    CommentComponent
+    CommentComponent,
+    SignInComponent,
+    HomePageComponent,
+    PostPageComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
