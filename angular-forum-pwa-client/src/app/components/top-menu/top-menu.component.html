@@ -12,23 +12,12 @@
 <!--        <a class="nav-link" href="#">Features</a>-->
 <!--      </li>-->
     </ul>
-
+<!--{{auth$ | async}}-->
     <ul class="navbar-nav ml-auto">
-<!--      <li class="nav-item dropdown">-->
-<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--          Dropdown link-->
-<!--        </a>-->
-<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
-<!--          <a class="dropdown-item" href="#">Action</a>-->
-<!--          <a class="dropdown-item" href="#">Another action</a>-->
-<!--          <a class="dropdown-item" href="#">Something else here</a>-->
-<!--        </div>-->
-<!--      </li>-->
-
-      <li class="nav-item active">
+      <li *ngIf="!(auth$ | async).isLoggedIn" class="nav-item active">
         <a class="nav-link" href="#" routerLink="/sign-in">Sign in</a>
       </li>
-      <li class="nav-item active">
+      <li *ngIf="!(auth$ | async).isLoggedIn" class="nav-item active">
         <a class="nav-link" href="#" routerLink="/sign-up">Sign up</a>
       </li>
     </ul>

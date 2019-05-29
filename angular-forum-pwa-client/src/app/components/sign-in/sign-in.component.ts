@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {AuthService} from '../../services/auth.service';
+import {Store} from '@ngrx/store';
+import {SignInSuccess} from '../../state/actions/auth.actions';
+import {AppState} from '../../state/states/app.state';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +14,7 @@ export class SignInComponent implements OnInit {
   private email: string;
   private password: string;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private store: Store<AppState>) {
   }
 
   ngOnInit() {
@@ -21,7 +24,7 @@ export class SignInComponent implements OnInit {
 
   signIn() {
     this.authService.signIn(this.email, this.password).subscribe((next) => {
-      console.log(next);
+      this.store.dispatch(new SignInSuccess(next));
     }, (err) => {
       console.error(err);
     });
