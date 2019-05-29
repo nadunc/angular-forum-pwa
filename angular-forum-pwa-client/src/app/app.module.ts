@@ -23,6 +23,9 @@ import {AuthService} from './services/auth.service';
 import {StoreModule} from '@ngrx/store';
 import {reducers, metaReducers} from './state/reducers';
 import { AddPostComponent } from './components/add-post/add-post.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ErrorUnauthorizedComponent } from './components/error-unauthorized/error-unauthorized.component';
+import { ErrorNotFoundComponent } from './components/error-not-found/error-not-found.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { AddPostComponent } from './components/add-post/add-post.component';
     HomePageComponent,
     PostPageComponent,
     SignUpComponent,
-    AddPostComponent
+    AddPostComponent,
+    AdminComponent,
+    ErrorUnauthorizedComponent,
+    ErrorNotFoundComponent
   ],
   imports: [
     BrowserModule,

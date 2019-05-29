@@ -8,6 +8,10 @@ import {PostPageComponent} from './components/post-page/post-page.component';
 import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {AddPostComponent} from './components/add-post/add-post.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import {AdminComponent} from './components/admin/admin.component';
+import {RoleGuardService} from './services/role-guard.service';
+import {ErrorUnauthorizedComponent} from './components/error-unauthorized/error-unauthorized.component';
+import {ErrorNotFoundComponent} from './components/error-not-found/error-not-found.component';
 
 const routes: Routes = [
   {
@@ -16,11 +20,12 @@ const routes: Routes = [
   },
   {
     path: 'sign-in',
-    component: SignInComponent
+    component: SignInComponent,
+
   },
   {
     path: 'sign-up',
-    component: SignUpComponent
+    component: SignUpComponent,
   },
   {
     path: 'post',
@@ -29,10 +34,23 @@ const routes: Routes = [
   {
     path: 'add-post',
     component: AddPostComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [RoleGuardService],
     data: {
       permittedRoles: ['ADMIN']
     }
+  },
+  {
+    path: 'unauthorized',
+    component: ErrorUnauthorizedComponent,
+  },
+  {
+    path: '**',
+    component: ErrorNotFoundComponent
   }
 ];
 

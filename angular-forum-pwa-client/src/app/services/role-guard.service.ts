@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import { Injectable } from '@angular/core';
 import {select, State} from '@ngrx/store';
 import {AppState} from '../state/states/app.state';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class RoleGuardService implements CanActivate {
 
   constructor(private store: State<AppState>, private router: Router) {
   }
@@ -17,10 +17,14 @@ export class AuthGuardService implements CanActivate {
 
     let observer = new Observable<boolean>((subscriber) => {
       this.store.pipe(select('auth')).subscribe((next) => {
-        if (next.isLoggedIn) {
+        if (route.data.permittedRoles.includes(next.userRole.toUpperCase())) {
           subscriber.next(true);
         } else {
-          this.router.navigate(['sign-in']);
+          this.router.navigate(['unauthorized'], {
+            skipLocationChange: true, // minimal effect. see https://github.com/angular/angular/issues/17004
+            queryParams: {
+              url: state.url
+            }});
           subscriber.next(false);
         }
       });
@@ -28,5 +32,4 @@ export class AuthGuardService implements CanActivate {
 
     return observer;
   }
-
 }
