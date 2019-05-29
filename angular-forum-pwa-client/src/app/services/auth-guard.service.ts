@@ -17,7 +17,8 @@ export class AuthGuardService implements CanActivate {
 
     let observer = new Observable<boolean>((subscriber) => {
       this.store.pipe(select('auth')).subscribe((next) => {
-        if (next.isLoggedIn) {
+        console.log('roles', route.data.permittedRoles);
+        if (next.isLoggedIn && route.data.permittedRoles.includes(next.userRole.toUpperCase())) {
           subscriber.next(true);
         } else {
           this.router.navigate(['/sign-in']);

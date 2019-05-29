@@ -25,6 +25,7 @@ export class AuthService {
         fname: 'Nadun',
         lname: 'Chamikara',
         token: 'test_token',
+        userRole: 'admin',
         isLoggedIn: true
       };
       subscriber.next(user);

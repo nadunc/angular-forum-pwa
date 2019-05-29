@@ -3,6 +3,7 @@ export interface IUserState {
   fname: string;
   lname: string;
   token: string;
+  userRole: string;
   isLoggedIn: boolean;
 }
 
@@ -11,5 +12,6 @@ export const initialSate: IUserState = {
   fname: '',
   lname: '',
   token: '',
+  userRole: '',
   isLoggedIn: false
 };

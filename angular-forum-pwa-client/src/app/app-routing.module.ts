@@ -29,7 +29,10 @@ const routes: Routes = [
   {
     path: 'add-post',
     component: AddPostComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: {
+      permittedRoles: ['ADMIN']
+    }
   }
 ];
 
