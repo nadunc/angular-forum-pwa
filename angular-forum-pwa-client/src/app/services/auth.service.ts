@@ -3,13 +3,17 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {API_ROUTES} from '../common/api-routes';
 import {IUserState} from '../state/states/user.state';
+import {Store} from '@ngrx/store';
+import {AppState} from '../state/states/app.state';
+import {SignInSuccess, SignOutSuccess} from '../state/actions/auth.actions';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private store: Store<AppState>, private http: HttpClient, private router: Router) {
   }
 
   signIn(email: string, password: string): Observable<any> {
@@ -33,5 +37,9 @@ export class AuthService {
     return this.http.post(API_ROUTES.SIGN_UP, user);
   }
 
+  signOut() {
+    this.store.dispatch(new SignOutSuccess());
+    this.router.navigate(['/']);
+  }
 
 }

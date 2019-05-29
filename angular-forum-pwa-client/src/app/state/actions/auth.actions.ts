@@ -11,10 +11,6 @@ export class SignInSuccess implements Action {
 
 export class SignOutSuccess implements Action {
   readonly type = SIGN_OUT_SUCCESS;
-
-  constructor(public payload: any) {
-  }
-
 }
 
 export type Actions = SignInSuccess | SignOutSuccess;

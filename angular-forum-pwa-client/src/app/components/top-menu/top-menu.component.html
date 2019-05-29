@@ -1,25 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary top-menu">
   <a class="navbar-brand" href="#" routerLink="/">Forum</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="#" routerLink="/">Posts <span class="sr-only">(current)</span></a>
       </li>
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" href="#">Features</a>-->
-<!--      </li>-->
+      <!--      <li class="nav-item">-->
+      <!--        <a class="nav-link" href="#">Features</a>-->
+      <!--      </li>-->
     </ul>
-<!--{{auth$ | async}}-->
+    <!--{{auth$ | async}}-->
     <ul class="navbar-nav ml-auto">
-      <li *ngIf="!(auth$ | async).isLoggedIn" class="nav-item active">
-        <a class="nav-link" href="#" routerLink="/sign-in">Sign in</a>
-      </li>
-      <li *ngIf="!(auth$ | async).isLoggedIn" class="nav-item active">
-        <a class="nav-link" href="#" routerLink="/sign-up">Sign up</a>
-      </li>
+      <ng-container *ngIf="(auth$ | async).isLoggedIn; then loggedIn; else loggedOut"></ng-container>
+
+      <ng-template #loggedOut>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/sign-in">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/sign-up">Sign up</a>
+        </li>
+      </ng-template>
+
+      <ng-template #loggedIn>
+        <li class="nav-item">
+            <img src="https://avatars.dicebear.com/v2/jdenticon/{{(auth$|async).username}}.svg" width="30px"
+                 class="img-rounded img-bordered mr-2 mt-1">
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" (click)="signOut()">Sign out</a>
+        </li>
+      </ng-template>
+
     </ul>
   </div>
 </nav>

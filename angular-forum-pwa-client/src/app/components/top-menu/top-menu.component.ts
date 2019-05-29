@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {IUserState} from '../../state/states/user.state';
 import {AppState} from '../../state/states/app.state';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -14,7 +15,7 @@ export class TopMenuComponent implements OnInit {
   auth$: Observable<IUserState>;
   user: IUserState;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private authService: AuthService) {
     this.auth$ = store.select('auth');
   }
 
@@ -25,5 +26,7 @@ export class TopMenuComponent implements OnInit {
     });
   }
 
-
+  signOut() {
+    this.authService.signOut();
+  }
 }

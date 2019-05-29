@@ -22,6 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './services/auth.service';
 import {StoreModule} from '@ngrx/store';
 import {reducers, metaReducers} from './state/reducers';
+import { AddPostComponent } from './components/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {reducers, metaReducers} from './state/reducers';
     SignInComponent,
     HomePageComponent,
     PostPageComponent,
-    SignUpComponent
+    SignUpComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,

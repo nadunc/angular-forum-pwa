@@ -6,6 +6,8 @@ import {SignInComponent} from './components/sign-in/sign-in.component';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {PostPageComponent} from './components/post-page/post-page.component';
 import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {AddPostComponent} from './components/add-post/add-post.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -23,6 +25,11 @@ const routes: Routes = [
   {
     path: 'post',
     component: PostPageComponent
+  },
+  {
+    path: 'add-post',
+    component: AddPostComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 

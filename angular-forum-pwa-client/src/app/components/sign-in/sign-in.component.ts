@@ -3,6 +3,7 @@ import {AuthService} from '../../services/auth.service';
 import {Store} from '@ngrx/store';
 import {SignInSuccess} from '../../state/actions/auth.actions';
 import {AppState} from '../../state/states/app.state';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +15,7 @@ export class SignInComponent implements OnInit {
   private email: string;
   private password: string;
 
-  constructor(private authService: AuthService, private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class SignInComponent implements OnInit {
   signIn() {
     this.authService.signIn(this.email, this.password).subscribe((next) => {
       this.store.dispatch(new SignInSuccess(next));
+      this.router.navigate(['/']);
     }, (err) => {
       console.error(err);
     });
